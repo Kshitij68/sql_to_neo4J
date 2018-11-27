@@ -1,3 +1,10 @@
+# Github Rules File
+Github Rules.md
+
+# Datasets
+database.sqlite
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
