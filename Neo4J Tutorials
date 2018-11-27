@@ -1,0 +1,157 @@
+https://www.youtube.com/watch?v=eE6G5BX8GG0&list=PL1zjgLKnHOtga1W4cdyjxRbliw4-n84hR
+
+Create a Single Node
+create (n)
+
+view Created Node
+match (n) return n;
+
+Create multiple nodes
+create (n),(m)
+
+View all created nodes
+match (n) return n;
+
+View limited number of nodes
+match (n) return limit 2;
+
+An internal id is assigned to each node
+Search node by ID
+match (n) where id(n)=1 return n;
+match (n) where id(n) <= 6 return n;
+match (n) where id(n) in [1,2,4] return n;
+
+Delete nodes and database
+match (n) where id(n) == 1 delete n;
+match (n) where id(n) in [2,3] delete n;
+
+Create Nodes with Labels
+create (n:Person);
+
+Search Node with Labels
+match (n) where n:Person return n;
+
+
+create node with multiple labels
+create (n:Person:Indian);
+
+search node by multiple labels
+match (n) where n:Person:Indian return n;
+match (n) where n:Person OR n:Indian return n;
+
+
+Add Labels to All the nodes in the database
+match (n) set n:Employee return n;
+
+Add Label to Selected Node by Using Node ID
+match (n) where ID(n) == 0 set n:Manager return n;
+
+Add Label to Selected Multiple Nodes by Using Node ID
+match (n) where ID(n) IN[2,3] set n:TeamLeader return n;
+
+Add Multiple Labels to Nodes
+match (n) set n:Vacation:Food return n;
+
+Remove Labels on Nodes
+match (n) remove n:Person return n;
+
+Remove Labels from Selected Nodes
+match (n) where ID(n) IN[2,3] remove n:Employee return n;
+
+Remove Multiple Labels from the Nodes
+match (n) remove n:Vacation:Food return n;
+
+Update Labels on Nodes
+match (n) where ID(n)=0 remove n:Manager set n:Director return n;
+
+Cypher Queries returns all the distinct labels or set of labels that exist in the database
+match (n) return distinct labels(n);
+
+Listing of Labels for a Node
+match (n) where ID(n)=0 return labels(n);
+
+Total number of distinct labels
+match (n) return distinct count(labels(n));
+
+Return Labels along with the label count
+match (n) return distinct count(labels(n)), labels(n);
+
+Delete the Node by Label
+match (n) where n:TeamLeader delete n;
+
+Create a node with Single Property
+create (x:Book{title:'The White Tiger'}) return x;
+
+Create a node with Multiple Property
+create (x:Book{title:'The Three Mistakes of My Life',author:'Chetan Bhagat',publisher:'Rupa & Co.'}) return x;
+
+Naming Convention of Property/Attribute
+Property names are case sensitive
+Property names can contain special characters
+Property names must always start with letter
+
+Data Types used to define Property
+Property is defined in key value format
+Key: String
+Value: bool, int, double, long, char, string, boolean[], int[], double[], long[], char[], string[]
+
+Create Node with Different Property Datatypes
+create (x:Book{title:"The Lives of Others",author:"Neel Mukherjee",publisher:["Chatto and Wind","W.W.Norton],price:285,pages:528,instock:False}) return x;
+
+The command below will throw an exception as multiple data types cannot be present in an array
+An array must contain all the values of the same type
+create (x:Book{details:["The Secret of the Nagas",172.00,398]}) return x;
+
+Search Nodes by Property
+match (n:Book{author:"Chetan Bhagat"}) return n;
+
+Search nodes by an array of Property values
+match (n:Book{publisher:["Chatto and Windus", "W.W. Norton"]}) return n;
+
+Filter nodes by using Logical Operators (AND, OR, <, >, =)
+match (n:Book) where n.price < 1000 AND (n.author="Neel Mukerjee" or n.author="Ramchandran") return n;
+ 
+Filter nodes by type lincasting property value
+match (n:Book) where toInt(n.pages)=528 return n;
+
+Getting Nodes by Using Properties and IN Operator
+match (n:Book) where n.author IN["Arunadha Roy", "Amitav Ghosh", "Chetan Bhagat"] return n;
+
+Update Node Property - Set values to Properties
+match (n) where n.title= "Last man in the tower" set n.title="Last man in tower" return n;
+match (n:Book{title:"Last Man in the tower"}) set n.title="Last Man in tower" return n;
+
+Update Multiple Properties
+match (n:Book{title:"Flood of Fire"}) set n.author="Amitav Ghosh", n.price=799.00, n.stock = True return n;
+
+Add property values to node using SET clause
+match (n:Book{title:"The Three Mistakes of my Life"}) set n += {price:176.00, pages:258, instock:False} return n;
+
+Add/Set Label to Node using Property - Add Labels on Nodes using SET clause
+match (n) where n.title="The White Tiger" set n:BestSeller return n;
+
+Copy Properties between Nodes. 
+match (gp{title:"The Glass Nodes"}), (sl{title:"Shadow Lines"}) set gp = sl return gp,sl
+The properties of SL become properties of GP. Any property that GP had before will be removed
+
+We do not always want to remove entire node, but certain properties of the nodes
+
+match (x:Book{author:"Chetan Bhagat"}) set x.publisher=NULL return x;
+match (x:Book) where x.author = "Chetan Bhagat" set x.author = NULL return x;
+
+Remove a property from all nodes
+match (n) remove n.pages return n;
+
+Remove property using Label
+match (n) where n:BestSeller remove n.title return n;
+
+Remove Property by Matching Another Property
+match (n) where n.author="Chetan Bhagat" remove n.instock return n;
+
+Remove a Node by Using a Property
+match (n) where n.instock=False delete n;
+
+Remove property from Specific Node
+match (n) where id(n)=13 remove n.price return n;
+
+
