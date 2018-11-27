@@ -1,0 +1,20 @@
+Country
+-> Each row with country corrosponding to each ID
+
+Team_Attributes
+-> Each row with team ID
+-> Each row with team_fifa_api_id
+-> Each row with team_api_id
+-> Each row with Date (WHAT IS DATE?)
+-> 21 properties of each team
+
+Team
+-> Each row with team_long_name and team_short_name corrosponding to each id, team_api_id, team_fifa_api_id
+
+League
+-> each row with League name corrosponding to ID and Country_id
+
+Match
+
+Player
+-> Each row with player name, player birthday, height and weight corrosponding to each ID, player_api_id, player_fifa_api_id
