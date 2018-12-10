@@ -154,4 +154,6 @@ match (n) where n.instock=False delete n;
 Remove property from Specific Node
 match (n) where id(n)=13 remove n.price return n;
 
+Delet all relationships and Nodes
+match (n) detach delete n;
 
