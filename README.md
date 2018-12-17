@@ -1,5 +1,6 @@
 # sql_to_neo4J
-An example on how to create a Neo4J database from existing SQL dataset
+An example on how to create a Neo4J database from existing SQL dataset.
+This project is ongoing. Once completed, I will publish my work at [my medium blog](https://medium.com/@k.mathur68)
 
 The dataset used can be found [here](https://www.kaggle.com/hugomathien/soccer)
 You can download Docker container for Neo4J using `docker pull neo4j`.
